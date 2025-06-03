@@ -1,0 +1,92 @@
+[gd_scene load_steps=9 format=3 uid="uid://b4l42tsl8jna2"]
+
+[ext_resource type="Texture2D" uid="uid://g8y6ivx8d3un" path="res://brackeys_platformer_assets/sprites/knight.png" id="1_owtlo"]
+
+[sub_resource type="GDScript" id="GDScript_owtlo"]
+script/source = "extends CharacterBody2D
+
+
+const SPEED = 300.0
+const JUMP_VELOCITY = -400.0
+
+
+func _physics_process(delta: float) -> void:
+	# Add the gravity.
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+
+	# Handle jump.
+	if Input.is_action_just_pressed(\"ui_accept\") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	var direction := Input.get_axis(\"ui_left\", \"ui_right\")
+	if direction:
+		velocity.x = direction * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+
+	move_and_slide()
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	get_tree().reload_current_scene()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sm1rv"]
+size = Vector2(46, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_owtlo"]
+atlas = ExtResource("1_owtlo")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nsuie"]
+atlas = ExtResource("1_owtlo")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26ldq"]
+atlas = ExtResource("1_owtlo")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_np0bx"]
+atlas = ExtResource("1_owtlo")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x1sy7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_owtlo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nsuie")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26ldq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_np0bx")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = SubResource("GDScript_owtlo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, 4)
+shape = SubResource("RectangleShape2D_sm1rv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(34, 11)
+rotation = 0.000370531
+scale = Vector2(1.93825, 1.40651)
+sprite_frames = SubResource("SpriteFrames_x1sy7")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.825537
+offset = Vector2(-13.3812, -7.35544)
