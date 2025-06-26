@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://84y0jl3r0y1o"]
+
+[ext_resource type="Script" uid="uid://d1vfamuw00sxv" path="res://title_screen.gd" id="1_v6p8y"]
+[ext_resource type="Texture2D" uid="uid://dj5qj3kjxvdqp" path="res://brackeys_platformer_assets/music/start.png" id="2_05l2w"]
+[ext_resource type="Texture2D" uid="uid://dawosc71ysp4w" path="res://brackeys_platformer_assets/music/ex.png" id="4_tpml5"]
+
+[node name="title screen" type="Node2D"]
+script = ExtResource("1_v6p8y")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_left = 695.0
+offset_top = 291.0
+offset_right = 1506.0
+offset_bottom = 721.0
+scale = Vector2(0.095, 0.095)
+texture_normal = ExtResource("2_05l2w")
+
+[node name="TextureButton3" type="TextureButton" parent="."]
+offset_left = 685.0
+offset_top = 389.0
+offset_right = 1972.0
+offset_bottom = 939.0
+scale = Vector2(0.095, 0.095)
+texture_normal = ExtResource("4_tpml5")
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="TextureButton3" to="." method="_on_texture_button_3_pressed"]

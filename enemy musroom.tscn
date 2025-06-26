@@ -1,0 +1,88 @@
+[gd_scene load_steps=12 format=3 uid="uid://c01hhwpkdy5xc"]
+
+[ext_resource type="Script" uid="uid://edjjifua4qgy" path="res://enemy_musroom.gd" id="1_mg36n"]
+[ext_resource type="Texture2D" uid="uid://dgr0i1rghabhr" path="res://Mushroom with VFX/Mushroom-Idle.png" id="2_5u7xm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vckdi"]
+atlas = ExtResource("2_5u7xm")
+region = Rect2(0, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7tpep"]
+atlas = ExtResource("2_5u7xm")
+region = Rect2(80, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2bmyl"]
+atlas = ExtResource("2_5u7xm")
+region = Rect2(160, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p8730"]
+atlas = ExtResource("2_5u7xm")
+region = Rect2(240, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmbho"]
+atlas = ExtResource("2_5u7xm")
+region = Rect2(320, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_umru8"]
+atlas = ExtResource("2_5u7xm")
+region = Rect2(400, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cew22"]
+atlas = ExtResource("2_5u7xm")
+region = Rect2(480, 0, 80, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n3rvt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vckdi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7tpep")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2bmyl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p8730")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmbho")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_umru8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cew22")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0k72k"]
+size = Vector2(27, 35)
+
+[node name="enemy" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_mg36n")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_n3rvt")
+autoplay = "default"
+centered = false
+flip_h = true
+
+[node name="kill zone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 15)
+shape = SubResource("RectangleShape2D_0k72k")
+
+[node name="RayCast Left" type="RayCast2D" parent="."]
+position = Vector2(-2, 16)
+target_position = Vector2(-18, 0)
+
+[node name="RayCast Right" type="RayCast2D" parent="RayCast Left"]
+target_position = Vector2(20, 0)

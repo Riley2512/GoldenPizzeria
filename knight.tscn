@@ -38,9 +38,6 @@ func die():
 	print(\"you die\")
 "
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sm1rv"]
-size = Vector2(46, 36)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_owtlo"]
 atlas = ExtResource("1_owtlo")
 region = Rect2(0, 0, 32, 32)
@@ -77,16 +74,16 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="CharacterBody2D"]
-script = SubResource("GDScript_owtlo")
+[sub_resource type="CircleShape2D" id="CircleShape2D_owtlo"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(3, 4)
-shape = SubResource("RectangleShape2D_sm1rv")
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 3
+collision_mask = 2
+script = SubResource("GDScript_owtlo")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(34, 11)
+position = Vector2(27, -7)
 rotation = 0.000370531
 scale = Vector2(1.93825, 1.40651)
 sprite_frames = SubResource("SpriteFrames_x1sy7")
@@ -94,3 +91,7 @@ animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.825537
 offset = Vector2(-13.3812, -7.35544)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -10)
+shape = SubResource("CircleShape2D_owtlo")

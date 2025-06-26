@@ -1,0 +1,98 @@
+[gd_scene load_steps=13 format=3 uid="uid://b3fu0vfxkubj0"]
+
+[ext_resource type="Script" uid="uid://edjjifua4qgy" path="res://enemy_musroom.gd" id="1_kq5my"]
+[ext_resource type="Texture2D" uid="uid://dgr0i1rghabhr" path="res://Mushroom with VFX/Mushroom-Idle.png" id="2_tqp82"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vckdi"]
+atlas = ExtResource("2_tqp82")
+region = Rect2(0, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7tpep"]
+atlas = ExtResource("2_tqp82")
+region = Rect2(80, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2bmyl"]
+atlas = ExtResource("2_tqp82")
+region = Rect2(160, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p8730"]
+atlas = ExtResource("2_tqp82")
+region = Rect2(240, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmbho"]
+atlas = ExtResource("2_tqp82")
+region = Rect2(320, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_umru8"]
+atlas = ExtResource("2_tqp82")
+region = Rect2(400, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cew22"]
+atlas = ExtResource("2_tqp82")
+region = Rect2(480, 0, 80, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n3rvt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vckdi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7tpep")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2bmyl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p8730")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmbho")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_umru8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cew22")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0k72k"]
+size = Vector2(27, 35)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kq5my"]
+
+[node name="enemy" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_kq5my")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-41, -25)
+sprite_frames = SubResource("SpriteFrames_n3rvt")
+autoplay = "default"
+centered = false
+flip_h = true
+
+[node name="kill zone" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="kill zone"]
+position = Vector2(-1, 23)
+shape = SubResource("RectangleShape2D_0k72k")
+
+[node name="RayCast Left" type="RayCast2D" parent="."]
+position = Vector2(-2, 16)
+target_position = Vector2(-18, 0)
+
+[node name="RayCast Right" type="RayCast2D" parent="RayCast Left"]
+target_position = Vector2(20, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 29)
+shape = SubResource("CircleShape2D_kq5my")
+
+[connection signal="body_entered" from="kill zone" to="." method="_on_kill_zone_body_entered"]
