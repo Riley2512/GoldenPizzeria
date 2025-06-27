@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED = 60
+const SPEED = 100
 
 var direction = 1
 @onready var ray_cast_left: RayCast2D = $"RayCast Left"
@@ -27,3 +27,4 @@ func _on_kill_zone_body_entered(body: Node2D) -> void:
 		body.queue_free()  # Instantly kills the player with no code in their script
 		# OR restart scene:
 		# get_tree().reload_current_scene()
+		get_tree().reload_current_scene()

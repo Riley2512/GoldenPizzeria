@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://bfnyyt6rc5cr8"]
+
+[ext_resource type="Script" uid="uid://wpvyetn8u3tm" path="res://area_2d.gd" id="1_s0ldm"]
+[ext_resource type="Texture2D" uid="uid://cns7ljppyu3up" path="res://cheese/sprite_0.png" id="2_d3rdx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ma2yl"]
+atlas = ExtResource("2_d3rdx")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_row1r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ma2yl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lmbpp"]
+size = Vector2(13, 12)
+
+[node name="Area2D" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_s0ldm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_row1r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4, -4)
+shape = SubResource("RectangleShape2D_lmbpp")

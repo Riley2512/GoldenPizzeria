@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://d0nffdtbxarud"]
+
+[ext_resource type="Texture2D" uid="uid://cy3ljtmk5g6ei" path="res://Peperoni/sprite_0.png" id="1_bguut"]
+[ext_resource type="Script" uid="uid://bni0vqfmv1u6y" path="res://peoeroni.tscn_3.gd" id="1_plpgj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_plpgj"]
+atlas = ExtResource("1_bguut")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ock6s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_plpgj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r5jdq"]
+radius = 8.06226
+
+[node name="peopori" type="Area2D"]
+position = Vector2(-3, 0)
+script = ExtResource("1_plpgj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ock6s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-5, -2)
+shape = SubResource("CircleShape2D_r5jdq")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
