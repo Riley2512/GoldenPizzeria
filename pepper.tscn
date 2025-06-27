@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://bk7ma12dcgbn3"]
+
+[ext_resource type="Script" uid="uid://bvbuhigqc55ah" path="res://pepper.gd" id="1_afx3k"]
+[ext_resource type="Texture2D" uid="uid://5h0chgkv5ae7" path="res://pepper/sprite_0.png" id="2_cnbx1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0l24"]
+atlas = ExtResource("2_cnbx1")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xsbcc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o0l24")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k4kea"]
+size = Vector2(23, 20)
+
+[node name="pepper" type="Area2D"]
+script = ExtResource("1_afx3k")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, 0)
+sprite_frames = SubResource("SpriteFrames_xsbcc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3.5, -3)
+shape = SubResource("RectangleShape2D_k4kea")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

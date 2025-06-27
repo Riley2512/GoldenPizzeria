@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://clwdfhl03fl54"]
+[gd_scene load_steps=12 format=4 uid="uid://clwdfhl03fl54"]
 
 [ext_resource type="PackedScene" uid="uid://b4l42tsl8jna2" path="res://knight.tscn" id="1_80nbo"]
 [ext_resource type="Texture2D" uid="uid://rlcllpekcktl" path="res://FreeCuteTilesetv1/FreeCuteTileset/BG1.png" id="1_feb5d"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://d0nffdtbxarud" path="res://peoeroni.tscn3.tscn" id="6_eow3j"]
 [ext_resource type="PackedScene" uid="uid://b3fu0vfxkubj0" path="res://enemy musroom.tscn 2.tscn" id="6_ryrav"]
 [ext_resource type="PackedScene" uid="uid://bfnyyt6rc5cr8" path="res://cheese.tscn" id="7_eow3j"]
+[ext_resource type="PackedScene" uid="uid://bk7ma12dcgbn3" path="res://pepper.tscn" id="8_j5wjh"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_80nbo"]
 normal = Vector2(0, -4.815)
@@ -222,5 +223,8 @@ position = Vector2(476, 262)
 
 [node name="Area2D2" parent="." instance=ExtResource("7_eow3j")]
 position = Vector2(625, 252)
+
+[node name="pepper" parent="." instance=ExtResource("8_j5wjh")]
+position = Vector2(854, 197)
 
 [connection signal="body_entered" from="Area2D" to="Player" method="_on_area_2d_body_entered"]
