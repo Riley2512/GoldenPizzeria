@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://bl3wgui4701kp"]
+
+[ext_resource type="Script" uid="uid://diytvb467gil7" path="res://pineapple.gd" id="1_bjh32"]
+[ext_resource type="Texture2D" uid="uid://eaiym3ffs8wg" path="res://sprite_0.png" id="2_qc7tb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_08lto"]
+atlas = ExtResource("2_qc7tb")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3ffuu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_08lto")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_orebd"]
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_bjh32")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3ffuu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -1)
+shape = SubResource("CircleShape2D_orebd")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
