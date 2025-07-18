@@ -3,3 +3,16 @@
 [ext_resource type="PackedScene" uid="uid://be1mcnfubiosx" path="res://title_screen.tscn 2.tscn" id="1_ln1uc"]
 
 [node name="title screen" instance=ExtResource("1_ln1uc")]
+
+[node name="TextureButton" parent="." index="1"]
+offset_left = 736.0
+offset_top = 331.0
+offset_right = 2023.0
+offset_bottom = 881.0
+scale = Vector2(0.159159, 0.144655)
+
+[node name="TextureButton3" parent="." index="2"]
+offset_left = 735.0
+offset_top = 390.0
+offset_right = 2022.0
+offset_bottom = 940.0
