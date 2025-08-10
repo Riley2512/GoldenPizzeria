@@ -1,0 +1,122 @@
+[gd_scene load_steps=16 format=3 uid="uid://ulo084omtpba"]
+
+[ext_resource type="Script" uid="uid://c5iqdh3wnolyp" path="res://enmey_bush.gd" id="1_jgomb"]
+[ext_resource type="Texture2D" uid="uid://cs54auilk5bcg" path="res://brackeys_platformer_assets/sprites/White_Swoosh_VFX/Golem_1_walk.png" id="2_imhmc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vyui6"]
+atlas = ExtResource("2_imhmc")
+region = Rect2(0, 0, 90, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u5v0x"]
+atlas = ExtResource("2_imhmc")
+region = Rect2(90, 0, 90, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ofhf"]
+atlas = ExtResource("2_imhmc")
+region = Rect2(180, 0, 90, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pnnca"]
+atlas = ExtResource("2_imhmc")
+region = Rect2(270, 0, 90, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qy0ni"]
+atlas = ExtResource("2_imhmc")
+region = Rect2(360, 0, 90, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v3bbp"]
+atlas = ExtResource("2_imhmc")
+region = Rect2(450, 0, 90, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m81wr"]
+atlas = ExtResource("2_imhmc")
+region = Rect2(540, 0, 90, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_up7bn"]
+atlas = ExtResource("2_imhmc")
+region = Rect2(630, 0, 90, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bd7m2"]
+atlas = ExtResource("2_imhmc")
+region = Rect2(720, 0, 90, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7yojb"]
+atlas = ExtResource("2_imhmc")
+region = Rect2(810, 0, 90, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wq3li"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vyui6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u5v0x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ofhf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pnnca")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qy0ni")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v3bbp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m81wr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_up7bn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bd7m2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7yojb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jgomb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_53vyu"]
+size = Vector2(36, 41)
+
+[node name="enmey ice" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_jgomb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(3, 0)
+sprite_frames = SubResource("SpriteFrames_wq3li")
+autoplay = "default"
+frame = 9
+frame_progress = 0.823854
+flip_h = true
+
+[node name="killzone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
+position = Vector2(1, 12)
+shape = SubResource("CircleShape2D_jgomb")
+
+[node name="RayCast Left" type="RayCast2D" parent="killzone"]
+unique_name_in_owner = true
+position = Vector2(8, 25)
+target_position = Vector2(25, 0)
+
+[node name="RayCast Right" type="RayCast2D" parent="killzone"]
+unique_name_in_owner = true
+position = Vector2(-10, 25)
+target_position = Vector2(-15, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, 11)
+shape = SubResource("RectangleShape2D_53vyu")
+
+[connection signal="body_entered" from="killzone" to="." method="_on_killzone_body_entered"]

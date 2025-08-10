@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsopd7qf17v6g"]
+
+[ext_resource type="Script" uid="uid://dqlkckyrcfj10" path="res://text_edit.gd" id="1_7bmky"]
+[ext_resource type="Texture2D" uid="uid://buti10bavdaua" path="res://pixel-art-pizza-with-pepperoni-cheese-bit-game-icon_360488-109.png" id="2_u5pt7"]
+
+[node name="pizza menu" type="TextEdit"]
+offset_right = 1550.0
+offset_bottom = 825.0
+script = ExtResource("1_7bmky")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 549.0
+offset_top = 232.0
+offset_right = 1629.0
+offset_bottom = 1287.0
+scale = Vector2(0.204764, 0.20451)
+texture_normal = ExtResource("2_u5pt7")
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
