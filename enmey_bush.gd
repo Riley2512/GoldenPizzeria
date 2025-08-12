@@ -1,5 +1,4 @@
 extends CharacterBody2D
-
 const SPEED = 150
 
 var direction = 1
@@ -20,15 +19,13 @@ func _process(delta):
 
 func _on_hitbox_body_entered(body):
 	print("Hello")
-	
-	
-	
 
 
-
-func _on_killzone_body_entered(body: Node2D) -> void:
+func _on_kill_zone_body_entered(body: Node2D) -> void:
 	if body.name == "Player":  # Or use body is CharacterBody2D if you're more flexible
 		body.queue_free()  # Instantly kills the player with no code in their script
 		# OR restart scene:
 		# get_tree().reload_current_scene()
 		get_tree().reload_current_scene()
+		
+		

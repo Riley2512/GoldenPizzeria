@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpuexds4pnsxg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7agid"]
+font_color = Color(0, 0, 0, 1)
+
+[node name="OptionsMenu" type="Node2D"]
+
+[node name="TabContainer" type="TabContainer" parent="."]
+texture_filter = 1
+texture_repeat = 2
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HSlider" type="HSlider" parent="."]
+texture_filter = 1
+texture_repeat = 2
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 17.0
+offset_bottom = 17.0
+scale = Vector2(2.2, 0.52)
+
+[node name="CheckButton" type="CheckButton" parent="."]
+texture_filter = 1
+texture_repeat = 2
+offset_left = 4.0
+offset_top = 14.0
+offset_right = 113.0
+offset_bottom = 45.0
+scale = Vector2(0.269014, 0.403396)
+text = "volume"
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+texture_repeat = 2
+offset_left = 5.0
+offset_top = 1.0
+offset_right = 60.0
+offset_bottom = 24.0
+scale = Vector2(0.473452, 0.277105)
+text = "Setting"
+label_settings = SubResource("LabelSettings_7agid")
